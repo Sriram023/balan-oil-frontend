@@ -38,7 +38,7 @@ const SalesEntry = () => {
   useEffect(() => {
     const fetchSales = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/sales");
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/sales`);
         if (!res.ok) throw new Error("Failed to fetch sales");
         const data = await res.json();
         setSales(data);
@@ -69,7 +69,7 @@ const SalesEntry = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/sales", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/sales`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
