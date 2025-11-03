@@ -160,7 +160,7 @@ const [products, setProducts] = useState<Product[]>([]);
 useEffect(() => {
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/manufacturers/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers/${id}`);
       if (!res.ok) throw new Error("Failed to fetch manufacturer details");
 
       const data = await res.json();
@@ -212,7 +212,7 @@ const handleAddProduct = async (e: React.FormEvent) => {
 
   try {
     // ✅ Send to backend (replace localhost with your Render backend link later)
-    const res = await fetch(`http://localhost:5000/api/manufacturers/${manufacturer._id || manufacturer.id}/add-product`, {
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers/${manufacturer._id || manufacturer.id}/add-product`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct),
