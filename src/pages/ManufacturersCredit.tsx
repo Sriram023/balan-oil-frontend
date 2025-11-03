@@ -213,7 +213,7 @@ const ManufacturersCredit = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/manufacturers");
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers`);
         if (!res.ok) throw new Error("Failed to fetch manufacturers");
         const data = await res.json();
 
@@ -246,7 +246,7 @@ const ManufacturersCredit = () => {
   if (!isValidNumber(credit) || !_id) return;
 
   try {
-    const response = await fetch(`http://localhost:5000/api/manufacturers/${_id}/add-credit`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers/${_id}/add-credit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: credit }),
@@ -281,7 +281,7 @@ const ManufacturersCredit = () => {
   if (!isValidNumber(payment) || !_id) return;
 
   try {
-    const response = await fetch(`http://localhost:5000/api/manufacturers/${_id}/add-payment`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers/${_id}/add-payment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: payment }),
@@ -331,7 +331,7 @@ const ManufacturersCredit = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/manufacturers", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
