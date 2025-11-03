@@ -41,7 +41,7 @@ const CustomerCredit = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/customers");
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/customers`);
         if (!res.ok) throw new Error("Failed to fetch customers");
         const data = await res.json();
         const mapped = data.map((d: any, i: number) => ({
@@ -68,7 +68,7 @@ const CustomerCredit = () => {
   const handleCreditUpdate = async (_id: string | number, credit: number) => {
     if (!isValidNumber(credit) || !_id) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/customers/${_id}/add-credit`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/customers/${_id}/add-credit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: credit }),
@@ -90,7 +90,7 @@ const CustomerCredit = () => {
   const handlePaymentUpdate = async (_id: string | number, payment: number) => {
     if (!isValidNumber(payment) || !_id) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/customers/${_id}/add-payment`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/customers/${_id}/add-payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: payment }),
@@ -126,7 +126,7 @@ const CustomerCredit = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/customers", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/customers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
