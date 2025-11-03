@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Set your backend base URL
-const API_BASE = "http://localhost:5000"; // Change if deployed
+const API_BASE = "https://balan-oil-erp.onrender.com"; // Change if deployed
 
 // Fetch a single manufacturer by ID
 export const fetchManufacturerById = async (id: number) => {
