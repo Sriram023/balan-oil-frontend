@@ -57,7 +57,7 @@ export const ManufacturerProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
   const fetchManufacturers = async () => {
     try {
-      const res = await fetch("/api/manufacturers");
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers`);
       const data = await res.json();
 
       const mapped = data.map((m: any) => ({
