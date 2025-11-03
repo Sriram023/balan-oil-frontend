@@ -27,7 +27,7 @@ export const CustomerProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/customers");
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/customers`);
         const data = await res.json();
 
         const mapped = data.map((c: any, i: number) => ({
