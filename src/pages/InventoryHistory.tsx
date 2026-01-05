@@ -1,57 +1,25 @@
 import { useEffect, useState } from "react";
-import DashboardLayout from "@/components/DashboardLayout";
 
-interface Transaction {
-  _id: string;
-  barcode: string;
-  type: "IN" | "OUT" | "ADJUST";
-  reason: string;
-  quantity: number;
-  createdAt: string;
-}
+const API = import.meta.env.VITE_API_BASE_URL;
 
-const InventoryHistory = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+export default function InventoryHistory() {
+  const [txns, setTxns] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/inventory/transactions`)
+    fetch(`${API}/inventory/transactions`)
       .then(res => res.json())
-      .then(setTransactions)
-      .catch(console.error);
+      .then(setTxns);
   }, []);
 
   return (
-    <DashboardLayout>
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">🧾 Inventory History</h1>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Inventory History</h1>
 
-        <table className="w-full border">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border p-2">Barcode</th>
-              <th className="border p-2">Type</th>
-              <th className="border p-2">Reason</th>
-              <th className="border p-2">Qty</th>
-              <th className="border p-2">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map(tx => (
-              <tr key={tx._id}>
-                <td className="border p-2">{tx.barcode}</td>
-                <td className="border p-2">{tx.type}</td>
-                <td className="border p-2">{tx.reason}</td>
-                <td className="border p-2">{tx.quantity}</td>
-                <td className="border p-2">
-                  {new Date(tx.createdAt).toLocaleString()}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </DashboardLayout>
+      {txns.map(t => (
+        <div key={t._id}>
+          {t.type} | {t.barcode} | {t.quantity}
+        </div>
+      ))}
+    </div>
   );
-};
-
-export default InventoryHistory;
+}
