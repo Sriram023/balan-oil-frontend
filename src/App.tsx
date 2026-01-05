@@ -56,7 +56,7 @@ const App = () => (
               <Route path="/inventory/history" element={<InventoryHistory />} />
 
               {/* 📱 Mobile Barcode Scanner */}
-              <Route path="/scan" element={<MobileScan />} />
+              <Route path="/mobilescan" element={<MobileScan />} />
 
               {/* Fallback */}
               <Route path="*" element={<NotFound />} />
