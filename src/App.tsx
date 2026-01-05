@@ -9,15 +9,20 @@ import Dashboard from "./pages/Dashboard";
 import ManufacturersCredit from "./pages/ManufacturersCredit";
 import ManufacturerDetail from "./pages/ManufacturerDetail";
 import CustomersCredit from "./pages/CustomersCredit";
+import CustomerDetail from "./pages/CustomerDetail";
 import SalesEntry from "./pages/SalesEntry";
 import NotFound from "./pages/NotFound";
 
+/* 🆕 Inventory Pages */
+import Inventory from "./pages/Inventory";
+import InventoryHistory from "./pages/InventoryHistory";
+import MobileScan from "./pages/MobileScan";
+
+/* Context Providers */
 import { ManufacturerProvider } from "@/context/ManufacturerContext";
-import { CustomerProvider } from "@/context/CustomerContext"; // 🆕 add this
-import CustomerDetail from "./pages/CustomerDetail"; // 🆕 add this
+import { CustomerProvider } from "@/context/CustomerContext";
 
 const queryClient = new QueryClient();
-
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -28,8 +33,11 @@ const App = () => (
         <ManufacturerProvider>
           <CustomerProvider>
             <Routes>
+              {/* Auth */}
               <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/login" element={<Login />} />
+
+              {/* Core */}
               <Route path="/dashboard" element={<Dashboard />} />
 
               {/* Manufacturers */}
@@ -38,9 +46,19 @@ const App = () => (
 
               {/* Customers */}
               <Route path="/customers" element={<CustomersCredit />} />
-              <Route path="/customers/:id" element={<CustomerDetail />} /> {/* 🆕 detail route */}
+              <Route path="/customers/:id" element={<CustomerDetail />} />
 
+              {/* Sales */}
               <Route path="/sales" element={<SalesEntry />} />
+
+              {/* 🧾 Inventory System */}
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/inventory/history" element={<InventoryHistory />} />
+
+              {/* 📱 Mobile Barcode Scanner */}
+              <Route path="/scan" element={<MobileScan />} />
+
+              {/* Fallback */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </CustomerProvider>
