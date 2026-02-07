@@ -1,4 +1,4 @@
-# 🛢️ Balan Oil Mart - Internal Business Management System (ERP)
+# Balan Oil Mart - Internal Business Management System (ERP)
 
 **Developer:** Sriram (CEO of BM Oils)  
 **Tech Stack:** MERN (MongoDB, Express, React, Node.js) + TypeScript + Tailwind + ShadCN UI  
